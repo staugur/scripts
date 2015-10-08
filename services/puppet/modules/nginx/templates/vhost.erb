@@ -1,0 +1,23 @@
+server { 
+listen <%= port %>; 
+server_name <%= hostname %>; 
+root <%= rootdir %>; 
+index index.php;
+
+location ~ .*\.php { 
+proxy_set_header Host $host; 
+proxy_set_header X-Forwarded-For $remote_addr; 
+proxy_headers_hash_max_size 512; 
+fastcgi_index index.php; 
+fastcgi_pass 127.0.0.1:9000; 
+include fastcgi.conf; 
+}
+
+location ~ \.(css|js)?$ { 
+expires 2h; 
+}
+
+location ~ .*\.(mp3|jpg|jpeg|rar|png|zip|wmv|rm|doc|ppt|gif|bmp|xls|pdf|swf)$ { 
+expires 5d; 
+} 
+}
