@@ -23,12 +23,9 @@ echo "------------------------------------------"
 echo "作者:SaintIC,更多内容请访问http://script.saintic.com"
 echo "------------------------------------------"
 PACKAGE_PATH=/usr/src
-
+downloadlink="https://saintic.top/software"
 #下载软件
-wget ftp://download.saintic.com/web/lnmp.tar.gz
-if [ $? != "0" ]; then
-	wget -c https://saintic.top/software/web/lnmp.tar.gz
-fi
+wget -c ${downloadlink}/web/lnmp.tar.gz
 tar zxf lnmp.tar.gz -C $PACKAGE_PATH
 
 #零：准备
@@ -53,18 +50,10 @@ tar zxf nginx-1.7.6.tar.gz
 cd nginx-1.7.6
 ./configure --prefix=/usr/local/nginx --sbin-path=/usr/sbin/ --user=nginx --group=nginx  --with-poll_module  --with-file-aio  --with-http_ssl_module  --with-http_dav_module  --with-http_flv_module  --with-http_gzip_static_module --with-http_stub_status_module  --with-pcre
 make && make install
-wget ftp://download.saintic.com/scripts/nginx-service
-if [ $? != "0" ]; then
-	wget -c http://software.saintic.com/core/scripts/nginx-service
-fi
-cp nginx-service /etc/init.d/nginx
-chmod +x /etc/init.d/nginx
-chkconfig --add nginx
-chkconfig nginx on
 nginx -t &> /dev/null
 if [ $? = 0 ]
 then
-	/etc/init.d/nginx start
+	nginx
 else
 	nginx -t && echo "Nginx web服务尚未启动！"
 fi

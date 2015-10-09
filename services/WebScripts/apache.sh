@@ -3,7 +3,7 @@ HTTPD_VERSION=2.2.29
 PACKAGE_PATH="/data/software"
 APP_PATH="/data/app"
 lock="/var/lock/subsys/paas.sdi.lock"
-
+downloadlink="https://saintic.top/software"
 clear
 cat<<EOF
 ####################################################
@@ -43,7 +43,7 @@ if [ -f $PACKAGE_PATH/httpd-${HTTPD_VERSION}.tar.gz ] || [ -d $PACKAGE_PATH/http
   rm -rf $PACKAGE_PATH/httpd-${HTTPD_VERSION}*
 fi
 cd $PACKAGE_PATH
-wget -c http://software.saintic.com/core/web/Apache.zip
+wget -c ${downloadlink}/web/Apache.zip
 wget -c http://archive.apache.org/dist/httpd/httpd-${HTTPD_VERSION}.tar.gz
 #1.Apr,Apr-util	
 tar zxf apr-1.2.12.tar.gz

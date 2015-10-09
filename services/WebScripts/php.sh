@@ -12,6 +12,7 @@ APP_PATH="/data/app"
 lock="/var/lock/subsys/paas.sdi.lock"
 CPU=$(grep "processor" /proc/cpuinfo | wc -l)
 MEM=$(free -m | awk '/Mem:/{print $2}')
+downloadlink="https://saintic.top/software"
 clear
 cat<<EOF
 ####################################################
@@ -56,7 +57,7 @@ rm -rf ${PACKAGE_PATH}/mcrypt-*
 rm -rf ${PACKAGE_PATH}/mhash-*
 yum -y remove php ; yum -y install tar bzip2 gzip libxml2-devel libtool pcre-devel ncurses-devel bison-devel gcc-c++ gcc make cmake expat-devel zlib-devel gd-devel libcurl-devel bzip2-devel readline-devel libedit-devel perl neon-devel openssl-devel cyrus-sasl-devel php-mbstring php-bcmath gettext-devel curl-devel libjpeg-devel libpng-devel
 cd $PACKAGE_PATH ; wget -c http://mirrors.sohu.com/php/php-${PHP_VERSION}.tar.gz
-wget -c https://software.saintic.com/core/web/php-lib.tar.gz || wget -c ftp://download.saintic.com/web/php-lib.tar.gz
+wget -c ${downloadlink}/web/php-lib.tar.gz|| echo "DownloadError,exit."&&exit 1
 tar zxf php-lib.tar.gz
 tar zxf libmcrypt-2.5.7.tar.gz
 tar zxf mhash-0.9.2.tar.gz

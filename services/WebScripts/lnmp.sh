@@ -9,6 +9,7 @@ APP_PATH="/data/app"
 lock="/var/lock/subsys/paas.sdi.lock"
 CPU=$(grep "processor" /proc/cpuinfo | wc -l)
 MEM=$(free -m | awk '/Mem:/{print $2}')
+downloadlink="https://saintic.top/software"
 
 cat<<EOF
 ####################################################
@@ -69,7 +70,7 @@ if [ -f $PACKAGE_PATH/mysql-${MYSQL_VERSION}.tar.gz ] || [ -d $PACKAGE_PATH/mysq
   rm -rf $PACKAGE_PATH/mysql-${MYSQL_VERSION}*
 fi
 cd $PACKAGE_PATH ; wget -c http://down1.chinaunix.net/distfiles/mysql-${MYSQL_VERSION}.tar.gz || \
-wget -c http://software.saintic.com/core/web/mysql-${MYSQL_VERSION}.tar.gz ; tar zxf mysql-${MYSQL_VERSION}.tar.gz
+wget -c ${downloadlink}/web/mysql-${MYSQL_VERSION}.tar.gz ; tar zxf mysql-${MYSQL_VERSION}.tar.gz
 cd mysql-$MYSQL_VERSION
 cmake -DCMAKE_INSTALL_PREFIX=${APP_PATH}/mysql -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_EXTRA_CHARSETS=all  -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_MEMORY_STORAGE_ENGINE=1 -DWITH_READLINE=1 -DENABLED_LOCAL_INFILE=1 -DMYSQL_DATADIR=${APP_PATH}/mysql/data/ -DMYSQL_USER=mysql -DMYSQL_UNIX_ADDR=/tmp/mysqld.sock -DMYSQL_TCP_PORT=3306 && make && make install
 cp -f support-files/my-medium.cnf /etc/my.cnf 
@@ -95,7 +96,7 @@ rm -rf ${PACKAGE_PATH}/mcrypt-*
 rm -rf ${PACKAGE_PATH}/mhash-*
 yum -y remove php ; yum -y install tar bzip2 gzip libxml2-devel libtool pcre-devel ncurses-devel bison-devel gcc-c++ gcc make cmake expat-devel zlib-devel gd-devel libcurl-devel bzip2-devel readline-devel libedit-devel perl neon-devel openssl-devel cyrus-sasl-devel php-mbstring php-bcmath gettext-devel curl-devel libjpeg-devel libpng-devel
 cd $PACKAGE_PATH ; wget -c http://mirrors.sohu.com/php/php-${PHP_VERSION}.tar.gz
-wget -c https://software.saintic.com/core/web/php-lib.tar.gz || wget -c ftp://download.saintic.com/web/php-lib.tar.gz
+wget -c ${downloadlink}/web/php-lib.tar.gz
 tar zxf php-lib.tar.gz
 tar zxf libmcrypt-2.5.7.tar.gz
 tar zxf mhash-0.9.2.tar.gz

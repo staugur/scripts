@@ -22,11 +22,9 @@ echo "------------------------------------------"
 echo "作者:SaintIC,更多内容请访问http://script.saintic.com"
 echo "------------------------------------------"
 PACKAGE_PATH=/usr/src
+downloadlink="https://saintic.top/software"
 #下载软件
-wget ftp://download.saintic.com/web/lamp.tar.gz
-if [ $? != "0" ]; then
-	wget -c https://saintic.top/software/web/lamp.tar.gz
-fi
+wget -c ${downloadlink}/web/lamp.tar.gz
 tar zxf lamp.tar.gz -C $PACKAGE_PATH
 
 #零：准备

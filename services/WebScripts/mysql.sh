@@ -4,6 +4,7 @@ PACKAGE_PATH="/data/software"
 APP_PATH="/data/app"
 lock="/var/lock/subsys/paas.sdi.lock"
 MYSQL_VERSION=5.5.20
+downloadlink="https://saintic.top/software"
 
 cat<<EOF
 ####################################################
@@ -47,7 +48,7 @@ if [ -f $PACKAGE_PATH/mysql-${MYSQL_VERSION}.tar.gz ] || [ -d $PACKAGE_PATH/mysq
   rm -rf $PACKAGE_PATH/mysql-${MYSQL_VERSION}*
 fi
 cd $PACKAGE_PATH ; wget -c http://down1.chinaunix.net/distfiles/mysql-${MYSQL_VERSION}.tar.gz || \
-wget -c http://software.saintic.com/core/web/mysql-${MYSQL_VERSION}.tar.gz ; tar zxf mysql-${MYSQL_VERSION}.tar.gz
+wget -c ${downloadlink}/web/mysql-${MYSQL_VERSION}.tar.gz ; tar zxf mysql-${MYSQL_VERSION}.tar.gz
 cd mysql-$MYSQL_VERSION
 cmake -DCMAKE_INSTALL_PREFIX=${APP_PATH}/mysql -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_EXTRA_CHARSETS=all  -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=0 -DWITH_MEMORY_STORAGE_ENGINE=1 -DWITH_READLINE=1 -DENABLED_LOCAL_INFILE=1 -DMYSQL_DATADIR=${APP_PATH}/mysql/data/ -DMYSQL_USER=mysql -DMYSQL_UNIX_ADDR=/tmp/mysqld.sock -DMYSQL_TCP_PORT=3306 && make && make install
 cp -f support-files/my-medium.cnf /etc/my.cnf
