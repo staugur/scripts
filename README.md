@@ -9,7 +9,7 @@ My Scripts
 
 >nginx_log_cut:切割日志
 
->services:应用服务
+>services:应用服务，非常重要的东西
 
 >svn_auto_update:PHP版更新SVN
 
