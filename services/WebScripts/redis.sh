@@ -1,7 +1,7 @@
 #!/bin/bash
 #author:saintic.com
 #redis
-REDIS_VERSION=3.0.1
+REDIS_VERSION=3.0.4
 PACKAGE_PATH="/data/software"
 APP_PATH="/data/app"
 lock="/var/lock/subsys/paas.sdi.lock"
@@ -40,7 +40,7 @@ function ERROR() {
   echo "Error:Please check this script and input/output!"
 }
 
-CREATE_REDIS() {
+CREATE_REDIS_Interactive() {
 if [ -f $PACKAGE_PATH/redis-${REDIS_VERSION}.tar.gz ] || [ -d $PACKAGE_PATH/redis-${REDIS_VERSION} ] ; then
   rm -rf $PACKAGE_PATH/redis-${REDIS_VERSION}*
 fi
@@ -54,6 +54,18 @@ sysctl -p
 /etc/init.d/redis_6379 start
 }
 
+CREATE_REDIS_YES() {
+if [ -f $PACKAGE_PATH/redis-${REDIS_VERSION}.tar.gz ] || [ -d $PACKAGE_PATH/redis-${REDIS_VERSION} ] ; then
+  rm -rf $PACKAGE_PATH/redis-${REDIS_VERSION}*
+fi
+cd $PACKAGE_PATH ; wget -c http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz || wget -c https://codeload.github.com/antirez/redis/tar.gz/$REDIS_VERSION && mv $REDIS_VERSION redis-${REDIS_VERSION}.tar.gz
+tar zxf redis-${REDIS_VERSION}.tar.gz ; cd redis-$REDIS_VERSION
+make
+make install
+echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf ; sysctl -p
+/usr/sbin/redis-server
+}
+
 api() {
 local redis_api_version=2.2.7
 cd $PACKAGE_PATH ; wget -c http://pecl.php.net/get/redis-${redis_api_version}.tgz
@@ -65,9 +77,15 @@ echo "extension=${EXT1}redis.so" >> ${APP_PATH}/php/etc/php.ini
 }
 
 REDIS() {
-CREATE_REDIS
+[ $exec_sh == "yes" ] && CREATE_REDIS_YES || CREATE_REDIS_Interactive
 #api
 }
+
+if [[ $1 == '-y' ]];then
+  exec_sh="yes"
+else
+  exec_sh="no"
+fi
 
 HEAD && REDIS || ERROR
 #if need start aof, please modify redis.conf.
