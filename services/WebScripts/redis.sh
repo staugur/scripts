@@ -92,6 +92,7 @@ if [[ $1 == '-y' ]];then
 else
   exec_sh="no"
 fi
+yum -y install wget tar gzip
 
 HEAD && REDIS || ERROR
 #if need start aof, please modify redis.conf.
