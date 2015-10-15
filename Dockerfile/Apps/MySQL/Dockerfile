@@ -2,7 +2,7 @@
 FROM staugur/base
 MAINTAINER SaintIC <staugur@saintic.com>  
 
-RUN yum -y install subversion;svn export https://github.com/staugur/scripts/trunk/services/WebScripts/mysql.sh;sh mysql.sh
+RUN yum -y install mysql-server
 
 EXPOSE 3306
 
