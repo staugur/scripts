@@ -61,7 +61,7 @@ fi
 cd $PACKAGE_PATH ; wget -c http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz || wget -c https://codeload.github.com/antirez/redis/tar.gz/$REDIS_VERSION && mv $REDIS_VERSION redis-${REDIS_VERSION}.tar.gz
 tar zxf redis-${REDIS_VERSION}.tar.gz ; cd redis-$REDIS_VERSION
 make
-make install
+cp 
 echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf ; sysctl -p
 if [ $? -eq 0 ];then
   /usr/sbin/redis-server
