@@ -63,7 +63,13 @@ tar zxf redis-${REDIS_VERSION}.tar.gz ; cd redis-$REDIS_VERSION
 make
 make install
 echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf ; sysctl -p
-/usr/sbin/redis-server
+if [ $? -eq 0 ];then
+  /usr/sbin/redis-server
+  [ $? -eq 0 ] && exit 0 || exit 1
+else
+  echo "Maybe you are in a docker, please set the file '/etc/sysctl.conf'."
+  exit 0
+fi
 }
 
 api() {
