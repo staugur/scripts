@@ -61,10 +61,10 @@ fi
 cd $PACKAGE_PATH ; wget -c http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz || wget -c https://codeload.github.com/antirez/redis/tar.gz/$REDIS_VERSION && mv $REDIS_VERSION redis-${REDIS_VERSION}.tar.gz
 tar zxf redis-${REDIS_VERSION}.tar.gz ; cd redis-$REDIS_VERSION
 make
-cp 
+cp -f src/redis-server src/redis-cli src/redis-check-dump src/redis-check-aof src/redis-benchmark /usr/bin/
 echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf ; sysctl -p
 if [ $? -eq 0 ];then
-  /usr/sbin/redis-server
+  /usr/bin/redis-server
   [ $? -eq 0 ] && exit 0 || exit 1
 else
   echo "Maybe you are in a docker, please set the file '/etc/sysctl.conf'."
