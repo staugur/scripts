@@ -20,7 +20,7 @@ EOF
 
 function HEAD() {
   if [ $(id -u) != "0" ]; then
-   	echo "Error:make sure you are root!" ; exit 1
+    echo "Error:make sure you are root!" ; exit 1
   fi
   sestatus &> /dev/null
   if [ $? -ne 0 ]; then
@@ -28,9 +28,9 @@ function HEAD() {
   fi
   SESTATE=$(sestatus | nl | wc -l)
   if [ "$SESTATE" != "1" ]; then
-	sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
-	sed -i 's/SELINUX=permissive/SELINUX=disabled/g' /etc/selinux/config
-	echo "Please disable SELinux."
+  sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+  sed -i 's/SELINUX=permissive/SELINUX=disabled/g' /etc/selinux/config
+  echo "Please disable SELinux."
   fi
   [ -d $PACKAGE_PATH ] || mkdir -p $PACKAGE_PATH
   [ -d $APP_PATH ] || mkdir -p $APP_PATH
@@ -64,7 +64,7 @@ make
 cp -f src/redis-server src/redis-cli src/redis-check-dump src/redis-check-aof src/redis-benchmark /usr/bin/
 echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf ; sysctl -p
 if [ $? -eq 0 ];then
-  /usr/bin/redis-server
+  /usr/sbin/redis-server
   [ $? -eq 0 ] && exit 0 || exit 1
 else
   echo "Maybe you are in a docker, please set the file '/etc/sysctl.conf'."
@@ -92,7 +92,7 @@ if [[ $1 == '-y' ]];then
 else
   exec_sh="no"
 fi
-yum -y install wget tar gzip gcc
+yum -y install wget tar gzip gcc gcc-c++
 
 HEAD && REDIS || ERROR
 #if need start aof, please modify redis.conf.
@@ -102,4 +102,3 @@ if [ `ps aux | grep -v grep | grep redis |wc -l` -ge 1 ]; then
 else
   echo "Redis haven't finished."
 fi
-
