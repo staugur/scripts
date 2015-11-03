@@ -139,7 +139,7 @@ function iptables_rule() {
 }
 
 [ -f ${soft_dir}/keepalived-${ha_version}.tar.gz ] || download
-yum -y install tar gzip wget gcc gcc-c++ make
+yum -y install tar gzip wget gcc gcc-c++ make openssl-devel
 nginx
 keepalived
 iptables_rule
