@@ -138,8 +138,8 @@ function iptables_rule() {
   #iptables -I INPUT -i ${dev} -s 224.0.0.18 -j ACCEPT
 }
 
+yum -y install tar gzip wget gcc gcc-c++ make openssl-devel curl
 [ -f ${soft_dir}/keepalived-${ha_version}.tar.gz ] || download
-yum -y install tar gzip wget gcc gcc-c++ make openssl-devel
 nginx
 keepalived
 iptables_rule
