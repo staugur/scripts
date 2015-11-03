@@ -139,7 +139,7 @@ function iptables_rule() {
 }
 
 [ -f ${soft_dir}/keepalived-${ha_version}.tar.gz ] || download
-[ $(rpm -q wget|wc -l) -eq 1 ] || yum -y install wget
+yum -y install tar gzip wget gcc gcc-c++ make
 nginx
 keepalived
 iptables_rule
