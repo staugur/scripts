@@ -54,7 +54,7 @@ esac
 #modify time timezone
 #ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-cat > ~/.docker_tools<<EOF
+cat > ~/.docker_tools<<'EOF'
 #docker tools
 alias docker-pid="sudo docker inspect --format '{{.State.Pid}}'"
 alias docker-ip="sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
