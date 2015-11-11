@@ -39,17 +39,31 @@ function ERROR() {
 }
 
 MongoConfig() {
-mkdir -p ${APP_PATH}/mongodb/data ; touch ${APP_PATH}/mongodb/mongod.logs
+mkdir -p ${APP_PATH}/mongodb/data ; touch ${APP_PATH}/mongodb/mongod.log
 cat > ${APP_PATH}/mongodb/mongod.conf<<EOF
-dbpath = ${APP_PATH}/mongodb/data
-logpath = ${APP_PATH}/mongodb/mongod.logs
-pidfilepath = /var/run/mongod.pid
-logappend = true
-bind_ip = 127.0.0.1
-port = 27017
-fork = true
-auth = true
-nohttpinterface = true
+systemLog:
+   destination: file
+   path: "${APP_PATH}/mongodb/mongod.log"
+   logAppend: true
+storage:
+   dbPath: "${APP_PATH}/mongodb/data"
+   journal:
+      enabled: true
+   engine: wiredTiger
+   mmapv1:
+      journal:
+         commitIntervalMs: 100
+   wiredTiger:
+      engineConfig:
+         cacheSizeGB: 1
+         statisticsLogDelaySecs: 1
+processManagement:
+   fork: true
+net:
+   bindIp: 0.0.0.0
+   port: 27017
+setParameter:
+   enableLocalhostAuthBypass: false
 EOF
 }
 
@@ -67,7 +81,8 @@ wget -c https://fastdl.mongodb.org/linux/mongodb-linux-i686-3.0.3.tgz
 tar zxf mongodb-linux-i686-3.0.3.tgz ; mv mongodb-linux-i686-3.0.3 ${APP_PATH}/mongodb
 fi
 MongoConfig
-${APP_PATH}/mongodb/bin/mongod -f ${APP_PATH}/mongodb/mongod.conf &
+ln -s ${APP_PATH}/mongodb/bin/* /usr/bin/
+mongod -f ${APP_PATH}/mongodb/mongod.conf &
 }
 
 api() {
