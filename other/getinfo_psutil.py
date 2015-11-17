@@ -3,7 +3,7 @@
 #get system info from psutil
 #required:psutil
 try:
-  import sys,psutil,platform,commands,json,socket
+  import sys,psutil,platform,commands,json,socket,os
 except ImportError as msg:
   print "Import Error, because %s" % msg
   sys.exit(1)
@@ -11,6 +11,8 @@ except ImportError as msg:
 class SysInfo():
   '''Get System Info for linux'''
   sys_ip=socket.gethostbyname(socket.gethostname())
+  
+  client_ip=os.environ['SSH_CONNECTION'].split()[0]
   sys_version=platform.linux_distribution()
   sys_fqdn=platform.uname()[1]   #hostname,eg:localhost.localdomain
   sys_kernel=platform.uname()[2] #kernel version
@@ -20,7 +22,7 @@ class SysInfo():
     return json.dumps({"Hostname": self.sys_fqdn})
 
   def ip(self):
-    return json.dumps({"IP": self.sys_ip})
+    return json.dumps({"ServerIP": self.sys_ip, 'SSH_Client_IP': self.client_ip})
 
   def Kernel(self):
     return json.dumps({"Kernel": self.sys_kernel})
@@ -40,7 +42,7 @@ class SysInfo():
     cpu_time=psutil.cpu_times()
     cpu_logical_nums=psutil.cpu_count()
     cpu_physical_nums=psutil.cpu_count(logical=False)
-    return json.dumps({"Label": str(cpu_label), "Physical": int(cpu_physical_nums), "Logical": int(cpu_logical_nums), "Cache_size": str(cpu_cache)})
+    return json.dumps({"Label": str(cpu_label), "Logical": int(cpu_logical_nums), "Cache_size": str(cpu_cache)})
 
   def MEM(self):
     mem=psutil.virtual_memory()
@@ -83,6 +85,5 @@ if __name__ == '__main__':
   print info.CPU()
   print info.MEM()
   print info.DISK()
-  print info.NETWORK()
+  #print info.NETWORK()
   print info.OTHER()
-
