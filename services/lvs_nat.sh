@@ -1,4 +1,7 @@
 #!/bin/bash
+#instance为实例名
+#mode为实例的算法
+#readips为后端真实服务器IP:PORT
 instance=192.168.182.130:80
 mode=rr
 realips=("192.168.182.128:80" "192.168.182.129:80" "127.0.0.1:80")
