@@ -5,21 +5,21 @@ useradd $user
 sudo mkdir -p /home/${user}/.ssh
 sudo chmod 700 /home/${user}/.ssh
 sudo cat > /home/${user}/.ssh/authorized_keys <<'EOF'
------BEGIN DSA PRIVATE KEY-----
-Proc-Type: 4,ENCRYPTED
-DEK-Info: DES-EDE3-CBC,46E7779A57CC1BBD
-
-fy6UbS1Ps6sud8b4X2YsAuELYKxfznQcM4+D5ClLYtOUw6LXDB4YbiE5ecHZ4pDz
-Xi9lFetXmktllDrF9hy2mnTFgPSOiLfFsLwOLpVdbmOH6JU+hia0RTBkhs/qaFDv
-TrJy6LFXtmGiSiym1iYZio3qWwHJaNIm1xPlcdHq+RhmT92Rxuutc8LedZ0iBv+n
-ouVkxkWxUNU5wTVUwr6pQdlzgjvFKk3EFLWf5rmo7xt7HK46jX4BcEQ54RIeNVSc
-pyPMq5q30W+jq2eS3whl73D8tpplUgYQi0Q9zJzuMBVc6Y3oQcKvUMmW5NaYP3Uw
-voJvQVlZ8PCmCVBRuiSU8LZbl+vffCI5x+LOI8jQ2rNhQj2rjA8BPKKKNtaUKljv
-e46QRYUrzdCr+WoAPdo2a8kUv5Le4bTMvuwokwybGRePttZ/o1C/3Pn9+rhqQ4Nn
-uy6mfPlchNf6DX9N1ca3XdvqrQFp4sV+vzw6jeKeWTqVfyAN2rofWfdyQLns+4kS
-YSlJJHoREUsGBRzSzK/Vd8HOv5hFyvRrjO2/GWd0n6ZWbaos+R9bJJEX5sgNImyz
-KAUt5C+4CHhVAV9wFK3qig==
------END DSA PRIVATE KEY-----
+---- BEGIN SSH2 PUBLIC KEY ----
+Subject: JiFengmin
+Comment: "kangpeiliang"
+ModBitSize: 1024
+AAAAB3NzaC1kc3MAAACBAKhrU7ovvDKEPIWvyB1+Qpo/Yt6PQrhYiB3mbb8Wroep
+7ljhyMMkPkQ+6A1Sexj/Odyr+x2t+yevZJFlJrZT6k68aE4GaPStIznZSa5z5mOb
+NphjPO+6tIvY3loNhChBtl4qr0Jsc5xJKq3T94ANv/d9IOEDEQL0x2J5v/5nzvJB
+AAAAFQDN4MyKklara9SjWcVK+4K5HKBeBQAAAIA+FTKVv8wfYIFrgiiFXfJz3abt
+hlqk/j5/RAXgqFSS2DyEGFRXmV0WGgD/ISUQcR6PguyGP1BzDlSot4UFjzEQevqE
+pIiQlfeSeSWlWCpwejkdaaWVxLxhmWeYYjjFbvtg2dxrprr0TwLIPxXrql7n1vnV
+ocPM329ueiMLxb8CWwAAAIAYuBhQwzkuPgB9Vm6X6jHrauk5tf8QgGH3YCYA8XXO
+BIj3oehUm1eEE07k/ffNscDvGuJLaYtSzR7bsFu2tfZXTW/l3DELWE7SaBGmr8lN
+bPrlCYFjWCev97dXunl3fbjrbT64+Vmu2Asm/SZkHSEfWM5z+herPtCfAgN8rY/8
+xQ==
+---- END SSH2 PUBLIC KEY ----
 EOF
 sudo chmod 0600 /home/${user}/.ssh/authorized_keys
 sudo chown -R ${user}:${user} /home/${user}/.ssh
