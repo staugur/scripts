@@ -1,25 +1,11 @@
 #/bin/bash
-user=lihuailong
+user=mingguangzhen
 #adduser -G wheel $user
 useradd $user
 sudo mkdir -p /home/${user}/.ssh
 sudo chmod 700 /home/${user}/.ssh
 sudo cat > /home/${user}/.ssh/authorized_keys <<'EOF'
----- BEGIN SSH2 PUBLIC KEY ----
-Subject: JiFengmin
-Comment: "kangpeiliang"
-ModBitSize: 1024
-AAAAB3NzaC1kc3MAAACBAKhrU7ovvDKEPIWvyB1+Qpo/Yt6PQrhYiB3mbb8Wroep
-7ljhyMMkPkQ+6A1Sexj/Odyr+x2t+yevZJFlJrZT6k68aE4GaPStIznZSa5z5mOb
-NphjPO+6tIvY3loNhChBtl4qr0Jsc5xJKq3T94ANv/d9IOEDEQL0x2J5v/5nzvJB
-AAAAFQDN4MyKklara9SjWcVK+4K5HKBeBQAAAIA+FTKVv8wfYIFrgiiFXfJz3abt
-hlqk/j5/RAXgqFSS2DyEGFRXmV0WGgD/ISUQcR6PguyGP1BzDlSot4UFjzEQevqE
-pIiQlfeSeSWlWCpwejkdaaWVxLxhmWeYYjjFbvtg2dxrprr0TwLIPxXrql7n1vnV
-ocPM329ueiMLxb8CWwAAAIAYuBhQwzkuPgB9Vm6X6jHrauk5tf8QgGH3YCYA8XXO
-BIj3oehUm1eEE07k/ffNscDvGuJLaYtSzR7bsFu2tfZXTW/l3DELWE7SaBGmr8lN
-bPrlCYFjWCev97dXunl3fbjrbT64+Vmu2Asm/SZkHSEfWM5z+herPtCfAgN8rY/8
-xQ==
----- END SSH2 PUBLIC KEY ----
+ssh-dss AAAAB3NzaC1kc3MAAACBAJAygXgmiPYz1IJgDifpI3s4cxNLDU17Oc1kFX1YC4y1Yc6DiviRiZa2kQqnX/SV5OVDvksT8COZg8HLJTZbEBdqGBoYg7EfpSE6kOaW84UW7SBLGtRHwCstAF8ZqIoUF/9j/eNWZ2pUMDUvjocrv9/cRe89qFAr2VUy3+AFjJ5rAAAAFQDSo+yqOqL2jH+adnNyqgipniDF1wAAAIAGcvTSbMYWgf1KdNW4Pwd4Pe3hPQZsn7QVUz1hR+23kPC45iKoqmTYJSUScmhVT2U6njGTjx0F1UdVfAx0PkFCRYModpXoCbjIT1p64V56SCfNmndHq9352H36Bt1KShbEa/SO5l2bjNiTIDkRZKKNhkd9P8egFgC5wUi74cge/AAAAIAiGoZyt7IbYVqmBsdLT7s8LhqFukbCY34B5eoaTyQEbs6O84YjfdmTA4z2t8QY9FdzV/NoKqe3Nq6Ltn84yz72Er9+pvcKxH6ngdISVpYc6NfIUfOUddje7Iqf2oYCwKQdBZ6SsLrNRxDpe1uFs6Mj+VQfqfLMXKLdCLCwuMxZGg==
 EOF
 sudo chmod 0600 /home/${user}/.ssh/authorized_keys
 sudo chown -R ${user}:${user} /home/${user}/.ssh
