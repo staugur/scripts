@@ -2,10 +2,10 @@ FROM registry.saintic.com/base
 
 MAINTAINER SaintIC <staugur@saintic.com>  
 
-RUN yum -y install httpd && mkdir -p /data/wwwroot && ln -s /data/wwwroot /var/www/html
+RUN yum -y install httpd && mkdir -p /data/wwwroot
 
-EXPOSE 80
+ENV LANG en_US.UTF-8
 
-ENV LANG en_US.UTF-8  
+ADD entrypoint.sh /
 
-ENTRYPOINT /etc/init.d/httpd start && /bin/bash
+ENTRYPOINT sh /entrypoint.sh && /bin/bash
