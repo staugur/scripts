@@ -8,6 +8,6 @@ MAINTAINER SaintIC <staugur@saintic.com>
 #RUN mkdir -p "$JAVA_HOME"
 
 ADD tomcat /data/tomcat
-RUN mkdir -p {/data/wwwroot,/data/tomcat/webapps && ln -s /data/wwwroot /data/tomcat/webapps/ROOT
+RUN mkdir -p {/data/wwwroot,/data/tomcat/webapps} && ln -s /data/wwwroot /data/tomcat/webapps/ROOT
 
 ENTRYPOINT sh /data/tomcat/entrypoint.sh && /bin/bash
