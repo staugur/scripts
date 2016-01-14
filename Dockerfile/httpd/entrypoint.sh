@@ -17,10 +17,10 @@ fi
 #sed -i 's/^ServerAdmin.*/'"${EMAIL}"'/'         $conf
 #sed -i 's/^#ServerName.*/ServerName localhost/' $conf
 
-sed -i 's/^Listen.*/Listen "$PORT"/'            $conf
-sed -i 's#^DocumentRoot.*#"${CODE_ROOT}"#'      $conf
-sed -i 's/^ServerAdmin.*/"${EMAIL}"/'           $conf
-sed -i 's/^#ServerName.*/ServerName localhost/' $conf
+sed -i 's/^Listen.*/Listen $PORT/'                    $conf
+sed -i 's#^DocumentRoot.*#DocumentRoot ${CODE_ROOT}#' $conf
+sed -i 's/^ServerAdmin.*/ServerAdmin ${EMAIL}/'       $conf
+sed -i 's/^#ServerName.*/ServerName localhost/'       $conf
 
 cat >> $conf <<EOF
 <Directory "${CODE_ROOT}">
@@ -31,4 +31,8 @@ cat >> $conf <<EOF
 </Directory>
 EOF
 
+apachectl -t
+if [ $? -ne 0 ] ;then
+    exit 1
+fi
 /etc/init.d/httpd start
