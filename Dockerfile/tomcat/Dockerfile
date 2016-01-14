@@ -1,4 +1,4 @@
-FROM registry.saintic.com/base
+FROM registry.saintic.com/jdk1.7.60
 MAINTAINER SaintIC <staugur@saintic.com>
 
 #already install jdk 
