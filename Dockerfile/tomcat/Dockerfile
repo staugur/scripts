@@ -7,7 +7,7 @@ MAINTAINER SaintIC <staugur@saintic.com>
 #ENV PATH $PATH:$JAVA_HOME/bin
 #RUN mkdir -p "$JAVA_HOME"
 
-ADD sspfront /data/tomcat
+ADD tomcat /data/tomcat
 RUN mkdir -p /data/wwwroot && ln -s /data/wwwroot /data/tomcat/webapps/ROOT
 
 ENTRYPOINT sh /data/tomcat/entrypoint.sh && /bin/bash
