@@ -2,7 +2,7 @@
 conf=/etc/httpd/conf/httpd.conf
 
 if [ -z $PORT ];then
-    PORT=8080
+    PORT=80
 fi
 if [ -z $CODE_ROOT ];then
     CODE_ROOT=/data/wwwroot
