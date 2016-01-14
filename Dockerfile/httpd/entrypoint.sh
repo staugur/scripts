@@ -17,7 +17,7 @@ fi
 #sed -i 's/^ServerAdmin.*/'"${EMAIL}"'/'         $conf
 #sed -i 's/^#ServerName.*/ServerName localhost/' $conf
 
-sed -i 's/^Listen.*/Listen $PORT/'                    $conf
+#sed -i 's/^Listen.*/Listen $PORT/'                    $conf
 sed -i 's#^DocumentRoot.*#DocumentRoot ${CODE_ROOT}#' $conf
 sed -i 's/^ServerAdmin.*/ServerAdmin ${EMAIL}/'       $conf
 sed -i 's/^#ServerName.*/ServerName localhost/'       $conf
