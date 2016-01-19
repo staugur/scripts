@@ -1,17 +1,17 @@
  
-##Ê¹ÓÃËµÃ÷
->1. `post-commit` ´æ·ÅÔÚSVN·þÎñÆ÷£¬ÊÇSVNµÄ¹³×ÓÎÄ¼þ£¬´æ·ÅÔÚ `svnÏîÄ¿Â·¾¶/hooks/post-commit`
+##ä½¿ç”¨è¯´æ˜Ž
+>1. `post-commit` å­˜æ”¾åœ¨SVNæœåŠ¡å™¨ï¼Œæ˜¯SVNçš„é’©å­æ–‡ä»¶ï¼Œå­˜æ”¾åœ¨ `svné¡¹ç›®è·¯å¾„/hooks/post-commit`
 
->2. `svn.php` ´æ·ÅÔÚSVN·þÎñÆ÷£¬¹© `post-commit` À´Ö´ÐÐ£¬Í¨¹ý `curl` À´´¥·¢Ä£ÄâhttpÐ­Òé·ÃÎÊWeb²âÊÔ·þÎñÆ÷ÉÏµÄ `update.php`
+>2. `svn.php` å­˜æ”¾åœ¨SVNæœåŠ¡å™¨ï¼Œä¾› `post-commit` æ¥æ‰§è¡Œï¼Œé€šè¿‡ `curl` æ¥è§¦å‘æ¨¡æ‹Ÿhttpåè®®è®¿é—®Webæµ‹è¯•æœåŠ¡å™¨ä¸Šçš„ `update.php`
 
->3. `update.php` ´æ·ÅÔÚWeb²âÊÔ·þÎñÆ÷ÉÏ£¬±£Ö¤¸Ã½Å±¾¿ÉÒÔÍ¨¹ýWeb·½Ê½·ÃÎÊ
+>3. `update.php` å­˜æ”¾åœ¨Webæµ‹è¯•æœåŠ¡å™¨ä¸Šï¼Œä¿è¯è¯¥è„šæœ¬å¯ä»¥é€šè¿‡Webæ–¹å¼è®¿é—®
 
->4. ²âÊÔÍ¨¹ý½«update.php·Åµ½ÏßÉÏ£¬ÊÖ¶¯Ö´ÐÐÕâ¸öÎÄ¼þ
+>4. æµ‹è¯•é€šè¿‡å°†update.phpæ”¾åˆ°çº¿ä¸Šï¼Œæ‰‹åŠ¨æ‰§è¡Œè¿™ä¸ªæ–‡ä»¶
 
-##×¢ÒâÊÂÏî
-Ê¹ÓÃ¹ý³Ì¿ÉÒÔ»áÓÐºÜ¶àµÄ½Å±¾Ö´ÐÐÈ¨ÏÞÎÊÌâ£¬ÇëÍùnginxºÍapacheµÄÊôÖ÷ºÍÊô×éÉÏÐÞ¸Ä
+##æ³¨æ„äº‹é¡¹
+ä½¿ç”¨è¿‡ç¨‹å¯ä»¥ä¼šæœ‰å¾ˆå¤šçš„è„šæœ¬æ‰§è¡Œæƒé™é—®é¢˜ï¼Œè¯·å¾€nginxå’Œapacheçš„å±žä¸»å’Œå±žç»„ä¸Šä¿®æ”¹
 ```shell
 chown -R www:www xxx
 ```
 
-×ªÔØ×Ô£ºhttp://mengkang.net/67.html
+è½¬è½½è‡ªï¼šhttp://mengkang.net/67.html

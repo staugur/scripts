@@ -12,10 +12,10 @@ if [ "$SPHINX_PORT" != "2" ]
 then
   if [ -e ${SPHINX}/var/log/searchd.pid ]; then
         pid=`${SPHINX}/var/log/searchd.pid`
-	echo "Sphinx($pid) is running, but not ports for two!" | mailx -s "SOA:Sphinx,Only Ports." -r monitor@yunjiazheng.com stagur@qq.com
+	echo "Sphinx($pid) is running, but not ports for two!" | mailx -s "SOA:Sphinx,Only Ports." -r monitor@saintic.com stagur@qq.com
   else 
 	$SPHINX_EXEC &>> $SPHINX_ERROR
-	echo "SOA:Sphinx is down.Please check it quickly." | mailx -s "SOA:Report:Sphinx Alarm"  -r monitor@yunjiazheng.com -a ${SPHINX_ERROR} -c taochengwei@yunjiazheng.com legends.zqs@qq.com,yuanxiaoming@yunjiazheng.com,staugur@qq.com
+	echo "SOA:Sphinx is down.Please check it quickly." | mailx -s "SOA:Report:Sphinx Alarm"  -r monitor@sainitc.com -a ${SPHINX_ERROR} -c taochengwei@saintic.com legends.zqs@qq.com,yuanxiaoming@saintic.com,staugur@qq.com
   fi
 fi
 
@@ -29,5 +29,5 @@ netstat -anptl |  grep LISTEN | grep php-fpm &>> $PHP_ERROR
 grep "9000" $PHP_ERROR
 if [ $? != "0" ]; then
 	${PHP_YAY_EXEC} 2>> $PHP_ERROR
-    echo "SOA:PHP5.6.2 is down.Please check it quickly." | mailx -s "SOA Report:PHP5.6.2 Alarm"  -r monitor@yunjiazheng.com -a ${PHP_ERROR} -c taochengwei@yunjiazheng.com yuanxiaoming@yunjiazheng.com,legends.zqs@qq.com,staugur@qq.com
+    echo "SOA:PHP5.6.2 is down.Please check it quickly." | mailx -s "SOA Report:PHP5.6.2 Alarm"  -r monitor@saintic.com -a ${PHP_ERROR} -c taochengwei@saintic.com devops@saintic.com
 fi
