@@ -1,9 +1,10 @@
 #!/bin/bash
 #Create virtual ftp users, first user is test
 error() {
+  echo "Error,args is 2:user password" 
   exit 1
-  echo "Error,args is 2"
 }
+SYS_VERSION=$(awk -F "release" '{print $2}' /etc/redhat-release | awk '{print $1}' | awk -F . '{print $1}')
 [ "$#" = "2" ] || error
 vfu=/etc/vsftpd/vfu.list
 vfudb=/etc/vsftpd/vfu.db
@@ -67,32 +68,12 @@ anon_mkdir_write_enable=YES
 anon_other_write_enable=YES
 local_root=/var/ftp/
 EOF
-/etc/init.d/vsftpd restart
+/etc/init.d/vsftpd start
 echo "Ending,Succeed!!!"
-echo "Please check iptables or firewalld, SELinux."
-
-
-
-#/bin/bash
-#create virtual ftp user.
-[ "$#" != "3" ] && ERROR
-#arg:$init_user $init_passwd $init_user_home_root
-vfu=/etc/vsftpd/vfu.list
-vfudb=/etc/vsftpd/vfu.db
-vfudir=/etc/vsftpd/vfu_dir
-cat >> $vfu <<EOF
-$1
-$2
-EOF
-db_load -T -t hash -f $vfu $vfudb
-cat > ${vfudir}/$1 <<EOF
-write_enable=YES
-anon_world_readable_only=NO
-anon_upload_enable=YES
-anon_mkdir_write_enable=YES
-anon_other_write_enable=YES
-local_root=$3
-EOF
-chown -R ftp.ftp $3
-chmod -R a+t $3
-/etc/init.d/vsftpd reload
+if [ "$SYS_VERSION" == "6" ] || [ "$SYS_VERSION" == "5" ]; then
+  sed -i 's/IPTABLES_MODULES=""/IPTABLES_MODULES="nf_conntrack_ftp"/' /etc/sysconfig/iptables-config
+  modprobe nf_conntrack_ftp
+  iptables -I INPUT -p tcp --dport 21 -j ACCEPT
+elif [ "$SYS_VERSION" == "7" ] ;then
+  echo "Please check firewalld:stop or set rule."
+fi
