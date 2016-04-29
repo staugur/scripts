@@ -1,0 +1,14 @@
+#!/usr/bin/expect -f
+set timeout 120
+set server [lindex $argv 0]
+set port [lindex $argv 1]
+set rootpasswd [lindex $argv 2]
+spawn ssh -p $port root@$server
+expect {
+    "*yes/no" { send "yes\r"; exp_continue}
+    "*assword:" { send "$rootpasswd\r" }
+}
+expect "*]#"
+send "curl -s http://oss.saintic.com/deploykey.sh | /bin/sh\r"
+send "exit\r"
+expect eof
