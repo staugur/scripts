@@ -2,7 +2,7 @@
 
 import requests
 
-apikey = 'e25c4d6a8a28349bb7a6cb076057c609'
+apikey = 'Your Baidu Apistore apikey'
 url = 'http://apis.baidu.com/rtbasia/non_human_traffic_screening_vp/nht_query'
 V={}
 headers={'apikey': apikey}
