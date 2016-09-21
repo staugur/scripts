@@ -1,0 +1,9 @@
+Flask
+Flask-RESTful
+tornado
+gevent
+setproctitle
+requests
+python-etcd
+SpliceURL>=0.3
+paramiko
