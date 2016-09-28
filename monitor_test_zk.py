@@ -1,6 +1,7 @@
 # coding: utf8
 # author: taochengwei <taochengwei@emar.com>
 # date:   2016-09-27
+# module: kazoo(pip install kazoo)
 
 import logging
 from time import sleep
