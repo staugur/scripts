@@ -13,7 +13,7 @@ from sh import wget
 from SendMailPics import SendMailPic
 
 baseurl = "http://apis.baidu.com/txapi/mvtp/meinv"
-apikey  = "e25c4d6a8a28349bb7a6cb076057c609"
+apikey  = "xxxx"
 num     = 10
 
 r = requests.get(baseurl, headers={"apikey": apikey}, params={"num": num})

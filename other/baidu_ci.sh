@@ -33,7 +33,7 @@ do
    check
 done
 
-curl -s -H 'Content-Type:text/plain' --data-binary @$ci_urls "http://data.zz.baidu.com/urls?site=www.saintic.com&token=QbriJ4Iv7TGi8yOF" > $ci_r
+curl -s -H 'Content-Type:text/plain' --data-binary @$ci_urls "http://data.zz.baidu.com/urls?site=www.saintic.com&token=YourToken" > $ci_r
 #此处的curl就是你在百度站长平台看到的curl推送示例，其中@urls.txt改为@$ci_urls即可。
 
 push_nums=$(jq .success ${ci_r})

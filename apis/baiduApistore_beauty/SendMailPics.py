@@ -42,12 +42,12 @@ def SendMailPic(*images, **kw):
     msgAlternative.attach(MIMEText(content, 'html', 'utf-8'))
 
     try:
-        server = smtplib.SMTP('mail.emar.com', 25)
+        server = smtplib.SMTP('Your Domain', 25)
         if debug:
             server.set_debuglevel(int(debug))
         else:
             pass
-        server.login("taochengwei@emar.com", "zxgtEQXTFDF7")
+        server.login("xxx", "xxx")
         server.sendmail(sender, to, msg.as_string())
         server.quit()
         return 0
