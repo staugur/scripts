@@ -1,10 +1,12 @@
+#!/usr/bin/python -O
 # -*- coding: utf-8 -*-
 
 import requests
 
-apikey = 'Your Baidu Apistore apikey'
+apikey = 'e25c4d6a8a28349bb7a6cb076057c609'
 url = 'http://apis.baidu.com/rtbasia/non_human_traffic_screening_vp/nht_query'
 V={}
+G={}
 headers={'apikey': apikey}
 
 def GetValue(ip):
@@ -13,7 +15,10 @@ def GetValue(ip):
     state = r.get('code')
     ip    = r.get('ip')
     score = int(r.get('data').get('score'))
-    if score < 50: V[ip] = score
+    if score < 50:
+        V[ip] = score
+    else:
+        G[ip] = score
     return {'state':state, 'ip':ip, 'score': score}
 
 if __name__ == '__main__':
@@ -26,4 +31,5 @@ if __name__ == '__main__':
         ips=f.readlines()
     for ip in ips:
         print GetValue(ip.strip())
-    print "真人概率值低语50%的有以下IP:\n", V
+    print "真人概率值低于50%的有以下IP:\n", V
+    print "真人概率值高于50%的有以下IP:\n", G
