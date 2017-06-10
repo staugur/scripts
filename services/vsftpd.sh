@@ -31,7 +31,7 @@ EOF
 
 mv /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf.bak
 cat > /etc/vsftpd/vsftpd.conf<<EOF
-ftpd_banner=SDI CodeSourceRoot.
+ftpd_banner=Ftp CodeSourceRoot
 anonymous_enable=NO
 local_enable=YES
 write_enable=YES
