@@ -68,7 +68,7 @@ anon_mkdir_write_enable=YES
 anon_other_write_enable=YES
 local_root=/var/ftp/
 EOF
-/etc/init.d/vsftpd start
+service vsftpd start
 echo "Ending,Succeed!!!"
 if [ "$SYS_VERSION" == "6" ] || [ "$SYS_VERSION" == "5" ]; then
   sed -i 's/IPTABLES_MODULES=""/IPTABLES_MODULES="nf_conntrack_ftp"/' /etc/sysconfig/iptables-config
