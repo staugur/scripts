@@ -19,6 +19,8 @@
         img_api: 图片来源地址(默认给出的可以获取每日Bing美图)
         img_path: 图片存放在Windows中的绝对路径
 
+    4. 开启自启动
+        执行命令 shell:startup 调出开始菜单启动程序，set_wallpaper.exe发送快捷方式到此目录
     :copyright: (c) 2018 by staugur.
     :license: MIT, see LICENSE for more details.
 """
