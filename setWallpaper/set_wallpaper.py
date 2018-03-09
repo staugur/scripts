@@ -15,11 +15,7 @@
         2.2 打开cmd(或powershell)，进入脚本所在目录，执行：
             pyinstaller.exe -F set_wallpaper.py -i win.ico -w
 
-    3. set_wallpaper函数参数
-        img_api: 图片来源地址(默认给出的可以获取每日Bing美图)
-        img_path: 图片存放在Windows中的绝对路径
-
-    4. 开启自启动
+    3. 开启自启动
         执行命令 shell:startup 调出开始菜单启动程序，set_wallpaper.exe发送快捷方式到此目录
     :copyright: (c) 2018 by staugur.
     :license: MIT, see LICENSE for more details.
@@ -33,8 +29,12 @@ import win32gui
 
 
 def set_wallpaper(img_api="https://open.saintic.com/api/bingPic/", img_path="D:\\BingWallpaper.jpg"):
-    # 下载壁纸
+    """ 下载图片并设置桌面背景
+    @param img_api str: 图片来源地址(默认给出的可以获取每日Bing美图)
+    @param img_path str: 图片存放在Windows中的绝对路径
+    """
     try:
+        # 下载壁纸
         urllib.urlretrieve(img_api, filename=img_path)
     except:
         raise
