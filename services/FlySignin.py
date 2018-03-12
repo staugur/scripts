@@ -30,7 +30,7 @@ publicHeaders = {
 def sendWechatMsg(message):
     """ 发送微信消息 """
     if isinstance(message, basestring):
-        apiUrl = "https://xingkaops.starokay.com/api/msg/"
+        apiUrl = ""
         header = dict(publicHeaders, AccessToken="")
         params = {"action": "weixin", "msgType": "text"}
         data   = {"msgContent": message}
@@ -42,7 +42,6 @@ def Signin(flyCookie):
     """自动签到
     @param flyCookie str: fly.layui.com登录后获取的`fly-layui`的cookie值
     """
-    logging.info(flyCookie)
     if flyCookie:
         """ 登陆步骤
         1. 查询状态
