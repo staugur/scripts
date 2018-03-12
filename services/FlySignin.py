@@ -12,15 +12,16 @@ __date__ = "2018-03-02"
 __author__ = "taochengwei"
 __version__ = "0.1"
 
-import requests, logging, os.path, sys, json
+import requests, logging, os.path, sys
 
 logging.basicConfig(
-    level= logging.INFO,
+    level    = logging.DEBUG,
     format   = '[ %(levelname)s ] %(asctime)s %(filename)s:%(lineno)d %(message)s',
     datefmt  = '%Y-%m-%d %H:%M:%S',
     filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), "%s.log" %sys.argv[0].split('.')[0]),
     filemode = 'a'
 )
+
 publicHeaders = {
     "Accept-Language": "zh-CN,zh;q=0.9",
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36",
@@ -70,7 +71,7 @@ def Signin(flyCookie):
             logging.error(e, exc_info=True)
             res.update(msg="FlySignin failed when request status")
         else:
-            logging.info("NO.1 status response: %s" %status)
+            logging.debug("NO.1 status response: %s" %status)
             if status.get("status") == 0 and status.get("data", {}).get("signed") == False:
                 try:
                     signin = requests.post(inUrl, headers=publicHeaders, cookies=cookies, data=dict(token=status["data"].get("token", 1))).json()
@@ -78,18 +79,19 @@ def Signin(flyCookie):
                     logging.error(e, exc_info=True)
                     res.update(msg="FlySignin failed when request signin")
                 else:
-                    logging.info("NO.2 signin response: %s" %signin)
+                    logging.debug("NO.2 signin response: %s" %signin)
                     res.update(signin)
             else:
                 res.update(status)
                 res.update(msg="FlySignin getted invaild status data")
         logging.info(res)
-        return sendWechatMsg(json.dumps(res))
+        msg = u"签到成功：已签到%s，获取经验%s" %(res["data"]["days"], res["data"]["experience"]) if res.get("status") == 0 and res.get("data", {}).get("signed") == True u"签到失败：%s" %res["msg"]
+        return sendWechatMsg(msg)
 
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("-f", "--flyCookie", help="fly.layui.com登录后获取的`fly-layui`的cookie值")
+    parser.add_argument("-f", "--flyCookie", help="fly.layui.com登录后获取的`fly-layui`的cookie值", default="")
     args = parser.parse_args()
     flyCookie = args.flyCookie
     if flyCookie:
