@@ -10,12 +10,14 @@
 
 __date__ = "2018-03-02"
 __author__ = "taochengwei"
-__version__ = "0.1"
+__version__ = "0.2"
 
 import requests, logging, os.path, sys
+from time import sleep
+from random import choice
 
 logging.basicConfig(
-    level    = logging.DEBUG,
+    level    = logging.INFO,
     format   = '[ %(levelname)s ] %(asctime)s %(filename)s:%(lineno)d %(message)s',
     datefmt  = '%Y-%m-%d %H:%M:%S',
     filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), "%s.log" %sys.argv[0].split('.')[0]),
@@ -38,12 +40,13 @@ def sendWechatMsg(message):
         logging.info("Finished sendWechatMsg response: %s" %resp)
         return resp["success"]
 
-def Signin(flyCookie):
+def Signin(flyCookie, RANDOM_TIME_ENABLE=True):
     """自动签到
     @param flyCookie str: fly.layui.com登录后获取的`fly-layui`的cookie值
+    @param RANDOM_TIME_ENABLE bool: 开启随机挂起几分钟后再签到的功能
     """
     if flyCookie:
-        """ 登陆步骤
+        """ 登录签到步骤
         1. 查询状态
         url: http://fly.layui.com/sign/status
         method: post
@@ -60,6 +63,8 @@ def Signin(flyCookie):
         data: token=未签到时data中token或者1
         resp: 签到状态、天数、经验值等
         """
+        if RANDOM_TIME_ENABLE is True:
+            sleep(choice(range(6)) * 60)
         res = dict(msg=None)
         statusUrl = "http://fly.layui.com/sign/status"
         inUrl = "http://fly.layui.com/sign/in"
@@ -70,7 +75,7 @@ def Signin(flyCookie):
             logging.error(e, exc_info=True)
             res.update(msg="FlySignin failed when request status")
         else:
-            logging.debug("NO.1 status response: %s" %status)
+            logging.info("NO.1 status response: %s" %status)
             if status.get("status") == 0 and status.get("data", {}).get("signed") == False:
                 try:
                     signin = requests.post(inUrl, headers=publicHeaders, cookies=cookies, data=dict(token=status["data"].get("token", 1))).json()
@@ -78,22 +83,24 @@ def Signin(flyCookie):
                     logging.error(e, exc_info=True)
                     res.update(msg="FlySignin failed when request signin")
                 else:
-                    logging.debug("NO.2 signin response: %s" %signin)
+                    logging.info("NO.2 signin response: %s" %signin)
                     res.update(signin)
             else:
                 res.update(status)
                 res.update(msg="FlySignin getted invaild status data")
         logging.info(res)
-        msg = u"签到成功：已签到%s，获取经验%s" %(res["data"]["days"], res["data"]["experience"]) if res.get("status") == 0 and res.get("data", {}).get("signed") == True u"签到失败：%s" %res["msg"]
+        msg = u"[Layui签到成功]\n\t签到%s天、%s经验" %(res["data"]["days"], res["data"]["experience"]) if res.get("status") == 0 and res.get("data", {}).get("signed") == True else u"[Layui签到失败]"
         return sendWechatMsg(msg)
 
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("-f", "--flyCookie", help="fly.layui.com登录后获取的`fly-layui`的cookie值", default="")
+    parser.add_argument("--RANDOM_TIME_ENABLE", help="随机暂停几分钟. 默认: true", default=True, action='store_true')
     args = parser.parse_args()
     flyCookie = args.flyCookie
+    RANDOM_TIME_ENABLE = args.RANDOM_TIME_ENABLE
     if flyCookie:
-        Signin(flyCookie)
+        Signin(flyCookie, RANDOM_TIME_ENABLE)
     else:
         parser.print_help()
