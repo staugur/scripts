@@ -96,11 +96,14 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("-f", "--flyCookie", help="fly.layui.com登录后获取的`fly-layui`的cookie值", default="")
-    parser.add_argument("--RANDOM_TIME_ENABLE", help="随机暂停几分钟. 默认: true", default=True, action='store_true')
+    parser.add_argument("--RANDOM_TIME_ENABLE", help="随机暂停几分钟功能是否启用", default=False, action='store_true')
     args = parser.parse_args()
     flyCookie = args.flyCookie
     RANDOM_TIME_ENABLE = args.RANDOM_TIME_ENABLE
     if flyCookie:
-        Signin(flyCookie, RANDOM_TIME_ENABLE)
+        try:
+            Signin(flyCookie, RANDOM_TIME_ENABLE)
+        except Exception,e:
+            logging.error(e, exc_info=True)
     else:
         parser.print_help()
