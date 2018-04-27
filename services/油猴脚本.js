@@ -45,7 +45,7 @@
         }
     };
     //给Google™ 搜索页设置个背景图片
-    if (api.isContains(api.getDomain(), "www.google.co") && api.arrayContains(["/", "webhp"], api.getUrlRelativePath())) {
+    if (api.isContains(api.getDomain(), "www.google.co") && api.arrayContains(["/", "/webhp"], api.getUrlRelativePath())) {
         //设置body背景颜色、图片、重复性、起始位置
         document.body.style.backgroundColor = "inherit";
         document.body.style.backgroundImage = "url('" + bgUrl + "')";
