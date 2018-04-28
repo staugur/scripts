@@ -4,7 +4,8 @@
 // @version      0.1
 // @description  我自定义的脚本
 // @author       staugur
-// @match        http*://www.google.*/*
+// @match        *://www.google.com/*
+// @match        *://www.google.co.*/*
 // @grant        none
 // @installURL   https://github.com/staugur/scripts
 // @supportURL   https://passport.saintic.com/feedback.html
