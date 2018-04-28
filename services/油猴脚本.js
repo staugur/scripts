@@ -21,8 +21,12 @@
     //配置
     var conf = {
         google: {
+            enable: true,
             bgUrl: "https://img.saintic.com/ImgBg/bg.jpg",
             hiddenFooter: true
+        },
+        csdn: {
+            enable: true
         }
     };
     //公共接口
@@ -55,23 +59,29 @@
         }
     };
     //给Google™ 搜索页设置个背景图片、隐藏页脚
-    if (api.isContains(api.getDomain(), "www.google.co") && api.arrayContains(["/", "/webhp"], api.getUrlRelativePath())) {
-        //设置body背景颜色、图片、重复性、起始位置
-        document.body.style.backgroundColor = "inherit";
-        document.body.style.backgroundImage = "url('" + bgUrl + "')";
-        document.body.style.backgroundRepeat = "no-repeat";
-        document.body.style.backgroundPosition = "50% 50%";
-        //隐藏页脚
-        document.getElementById('footer').style.display = 'none';
+    if (conf.google.enable===true) {
+        if (api.isContains(api.getDomain(), "www.google.co") && api.arrayContains(["/", "/webhp"], api.getUrlRelativePath())) {
+            //设置body背景颜色、图片、重复性、起始位置
+            document.body.style.backgroundColor = "inherit";
+            document.body.style.backgroundImage = "url('" + conf.google.bgUrl + "')";
+            document.body.style.backgroundRepeat = "no-repeat";
+            document.body.style.backgroundPosition = "50% 50%";
+            //隐藏页脚
+            if (conf.google.hiddenFooter===true){
+                document.getElementById('footer').style.display = 'none';
+            }
+        }
     }
     //CSDN文章详情页自动展开全文并去除阅读更多按钮
-    if (api.isContains(api.getDomain(), "blog.csdn.net")) {
-        var btnReadmore = $("#btn-readmore");
-        var articleBox = $("div.article_content");
-        //先去除阅读更多部分的style(隐藏)
-        articleBox.removeAttr("style");
-        //再删除越多更多按钮
-        btnReadmore.parent().remove();
+    if (conf.csdn.enable===true) {
+        if (api.isContains(api.getDomain(), "blog.csdn.net")) {
+            var btnReadmore = $("#btn-readmore");
+            var articleBox = $("div.article_content");
+            //先去除阅读更多部分的style(隐藏)
+            articleBox.removeAttr("style");
+            //再删除越多更多按钮
+            btnReadmore.parent().remove();
+        }
     }
     //console.log("ST-Script is over");
 })();
