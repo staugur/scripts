@@ -4,13 +4,13 @@
 // @version      0.1
 // @description  我自定义的脚本
 // @author       staugur
-// @match        http://*/*
+// @match        http*://www.google.*/*
 // @grant        none
-// @include      *://www.google.com/*
-// @include      *://www.google.co.*/*
 // @installURL   https://github.com/staugur/scripts
 // @supportURL   https://passport.saintic.com/feedback.html
 // @license      MIT
+// @date         2018-04-27
+// @modified     2018-04-28
 // ==/UserScript==
 
 (function() {
