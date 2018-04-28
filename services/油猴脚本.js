@@ -6,8 +6,8 @@
 // @author       staugur
 // @match        *://www.google.com/*
 // @match        *://www.google.co.*/*
-// @match        http://blog.csdn.net/*
-// @match        https://blog.csdn.net/*
+// @match        http://blog.csdn.net/*/article/details/*
+// @match        https://blog.csdn.net/*/article/details/*
 // @grant        none
 // @installURL   https://github.com/staugur/scripts
 // @supportURL   https://passport.saintic.com/feedback.html
