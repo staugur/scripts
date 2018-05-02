@@ -2,7 +2,7 @@
 // @name         ST-Script
 // @namespace    https://www.saintic.com/
 // @version      0.2
-// @description  修改google背景图；CSDN自动阅读全文。
+// @description  修改google背景图；CSDN自动阅读全文、关闭页脚登录注册框。
 // @author       staugur
 // @match        *://www.google.com/*
 // @match        *://www.google.co.*/*
@@ -26,7 +26,8 @@
             hiddenFooter: true
         },
         csdn: {
-            enable: true
+            auto_read_full: true,
+            auto_close_loginbox: true
         }
     };
     //公共接口
@@ -59,7 +60,7 @@
         }
     };
     //给Google™ 搜索页设置个背景图片、隐藏页脚
-    if (conf.google.enable===true) {
+    if (conf.google.enable === true) {
         if (api.isContains(api.getDomain(), "www.google.co") && api.arrayContains(["/", "/webhp"], api.getUrlRelativePath())) {
             //设置body背景颜色、图片、重复性、起始位置
             document.body.style.backgroundColor = "inherit";
@@ -67,13 +68,13 @@
             document.body.style.backgroundRepeat = "no-repeat";
             document.body.style.backgroundPosition = "50% 50%";
             //隐藏页脚
-            if (conf.google.hiddenFooter===true){
+            if (conf.google.hiddenFooter === true) {
                 document.getElementById('footer').style.display = 'none';
             }
         }
     }
     //CSDN文章详情页自动展开全文并去除阅读更多按钮
-    if (conf.csdn.enable===true) {
+    if (conf.csdn.auto_read_full === true) {
         if (api.isContains(api.getDomain(), "blog.csdn.net")) {
             var btnReadmore = $("#btn-readmore");
             var articleBox = $("div.article_content");
@@ -81,6 +82,14 @@
             articleBox.removeAttr("style");
             //再删除越多更多按钮
             btnReadmore.parent().remove();
+        }
+    }
+    //CSDN文章详情页关闭底部登录注册框
+    if (conf.csdn.auto_close_loginbox === true) {
+        if (api.isContains(api.getDomain(), "blog.csdn.net")) {
+            var pb = $('.pulllog-box');
+            //隐藏显示
+            pb[0].style.display = 'none';
         }
     }
     //console.log("ST-Script is over");
