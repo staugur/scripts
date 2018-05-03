@@ -27,7 +27,8 @@
         },
         csdn: {
             auto_read_full: true,
-            auto_close_loginbox: true
+            auto_close_loginbox: true,
+            auto_remove_asidefooter: true
         }
     };
     //公共接口
@@ -111,6 +112,13 @@
             var pb = $('.pulllog-box');
             //隐藏显示
             pb[0].style.display = 'none';
+        }
+    }
+    //CSDN删除asideFooter-侧栏底部，如联系我们
+    if (conf.csdn.auto_remove_asidefooter === true) {
+        if (api.isContains(api.getDomain(), "blog.csdn.net")) {
+            //删除左侧栏底部
+            $('#asideFooter').remove();
         }
     }
     //console.log("ST-Script is over");
