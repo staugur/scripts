@@ -1,8 +1,12 @@
-# -*- coding: gbk -*-
+# -*- coding: utf-8 -*-
 import urllib
 import urllib2
+import sys
 import re
 import os
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 
 class AVNY(object):
     def __init__(self,baseurl,newurl):
@@ -118,7 +122,7 @@ class AVNY(object):
         self.saveBrief(page)
         self.saveAllImgs(page)
 
-baseurl = r'http://nanrenvip.net/baishimolinai'
-newurl = "http://nanrenvip.net"
+baseurl = 'http://nanrenvip.org/baishimolinai'
+newurl = "http://nanrenvip.org"
 S = AVNY(baseurl,newurl)
 S.strat()
