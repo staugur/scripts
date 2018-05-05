@@ -122,7 +122,7 @@ class AVNY(object):
         self.saveBrief(page)
         self.saveAllImgs(page)
 
-baseurl = 'http://nanrenvip.org/baishimolinai'
+baseurl = 'http://nanrenvip.org/laimingguangli'
 newurl = "http://nanrenvip.org"
 S = AVNY(baseurl,newurl)
 S.strat()
