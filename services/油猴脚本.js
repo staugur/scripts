@@ -22,7 +22,7 @@
     var conf = {
         google: {
             enable: true,
-            bgUrl: "https://img.saintic.com/ImgBg/bg.jpg",
+            bgUrl: "https://open.saintic.com/api/bingPic/",
             hiddenFooter: true
         },
         csdn: {
