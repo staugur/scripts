@@ -36,6 +36,13 @@ def set_wallpaper(img_api="https://open.saintic.com/api/bingPic/", img_path="D:\
     try:
         # 下载壁纸
         urllib.urlretrieve(img_api, filename=img_path)
+        '''
+        urlopen = urllib.URLopener()
+        fp = urlopen.open(img_api)
+        data = fp.read()
+        with open(img_path, "wb") as f:
+            f.write(data)
+        '''
     except:
         raise
     else:
