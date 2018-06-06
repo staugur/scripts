@@ -9,7 +9,7 @@
 // @license      MIT
 // @date         2018-06-01
 // @modified     none
-// @github       https://github.com/staugur/scripts
+// @github       https://github.com/staugur/scripts/blob/master/userscripts/BlockChangyan.user.js
 // @supportURL   https://github.com/staugur/scripts/issues
 // ==/UserScript==
 
@@ -31,12 +31,12 @@
     /*
         主要代码
     */
-    console.log(hasId('feedAv'));
-    if (hasId("feedAv") === true) {
-        GM_addStyle('#feedAv{ margin-top: -250px!important;transform: scale(0);}');
-        setTimeout(function() {
+    GM_addStyle('#feedAv{ margin-top: -250px!important;transform: scale(0);}');
+    setTimeout(function() {
+        console.log(hasId('feedAv'));
+        if (hasId("feedAv") === true) {
             document.getElementById("feedAv").style.display = "none";
             document.getElementById('feedAv').id = "feedAvBak";
-        }, 2000);
-    }
+        }
+    }, 1500);
 })();
