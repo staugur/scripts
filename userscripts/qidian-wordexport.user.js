@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         起点章节导出
 // @namespace    https://www.saintic.com/
-// @version      0.1
+// @version      0.2
 // @description  阅文作家专区已发布章节中，文章内容导出为文档。
 // @author       staugur
 // @match        http*://write.qq.com/booknovels/chaptermanage/CBID/*
@@ -47,24 +47,26 @@
     addJS("https://cdn.bootcss.com/jquery/1.10.1/jquery.min.js", function() {
         addJS("https://static.saintic.com/cdn/doc/FileSaver.min.js", function() {
             addJS("https://static.saintic.com/cdn/doc/jquery.wordexport.js", function() {
-                if (hasId("viewChapterBox") && hasId("portamento_container") && hasId("chapterContent") && hasId("chapterTitle")) {
-                    //定位
-                    var ct = document.getElementById('chapterTitle');
-                    var pt = document.getElementById('portamento_container').getElementsByClassName('titleBtn')[0];
-                    //添加下载按钮
-                    if (isContains(pt.innerText, "下载") === false) {
-                        pt.insertAdjacentHTML('afterbegin', '<a id="downloadChapterBtn" class="button" href="javascript:">下载</a>')
-                    }
-                    //监听点击下载事件
-                    document.getElementById("downloadChapterBtn").onclick = function() {
-                        try {
-                            $("#chapterContent").wordExport(ct.innerText);
-                        } catch (e) {
-                            console.error(e);
-                            alert("当前文章无法导出为doc文档！");
+                setTimeout(function() {
+                    if (hasId("viewChapterBox") && hasId("portamento_container") && hasId("chapterContent") && hasId("chapterTitle")) {
+                        //定位
+                        var ct = document.getElementById('chapterTitle');
+                        var pt = document.getElementById('portamento_container').getElementsByClassName('titleBtn')[0];
+                        //添加下载按钮
+                        if (isContains(pt.innerText, "下载") === false) {
+                            pt.insertAdjacentHTML('afterbegin', '<a id="downloadChapterBtn" class="button" href="javascript:">下载</a>')
                         }
-                    };
-                }
+                        //监听点击下载事件
+                        document.getElementById("downloadChapterBtn").onclick = function() {
+                            try {
+                                $("#chapterContent").wordExport(ct.innerText);
+                            } catch (e) {
+                                console.error(e);
+                                alert("当前文章无法导出为doc文档！");
+                            }
+                        };
+                    }
+                }, 1000);
             });
         });
     });
