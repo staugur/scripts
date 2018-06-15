@@ -1,19 +1,18 @@
 // ==UserScript==
 // @name         ST-Script
 // @namespace    https://www.saintic.com/
-// @version      0.2
-// @description  修改google背景图；CSDN自动阅读全文、关闭页脚登录注册框。
+// @version      0.1
+// @description  修改google背景图、去除页脚；CSDN自动阅读全文、关闭页脚登录注册框。
 // @author       staugur
 // @match        *://www.google.com/*
 // @match        *://www.google.co.*/*
-// @match        http://blog.csdn.net/*/article/details/*
-// @match        https://blog.csdn.net/*/article/details/*
+// @match        http*://blog.csdn.net/*/article/details/*
 // @grant        none
-// @installURL   https://github.com/staugur/scripts
-// @supportURL   https://passport.saintic.com/feedback.html
+// @github       https://github.com/staugur/scripts/blob/master/userscripts/ST-Script.user.js
+// @supportURL   https://github.com/staugur/scripts/issues
 // @license      MIT
 // @date         2018-04-27
-// @modified     2018-04-28
+// @modified     2018-06-15
 // ==/UserScript==
 
 (function() {
