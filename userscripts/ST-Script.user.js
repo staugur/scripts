@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ST-Script
 // @namespace    https://www.saintic.com/
-// @version      0.1
+// @version      0.2
 // @description  修改google背景图、去除页脚；CSDN自动阅读全文、关闭页脚登录注册框。
 // @author       staugur
 // @match        *://www.google.com/*
@@ -20,13 +20,19 @@
     //配置
     var conf = {
         google: {
+            //此项设置是否开启修改google背景图功能
             enable: true,
+            //此项设置是背景图地址，当上述项为true时有效
             bgUrl: "https://open.saintic.com/api/bingPic/",
+            //此项设置隐藏google首页底部页脚
             hiddenFooter: true
         },
         csdn: {
+            //此项设置自动展开全文
             auto_read_full: true,
+            //此项设置关闭登录注册弹框
             auto_close_loginbox: true,
+            //此项设置关闭左侧底部广告
             auto_remove_asidefooter: true
         }
     };
