@@ -21,6 +21,7 @@ CommentReminder
 
   - 下载脚本：`wget https://raw.githubusercontent.com/staugur/scripts/master/valine_comment_reminder/CommentReminder.py`
   - 执行命令：`python2.7 CommentReminder.py` #-h查看帮助，需要设置的信息都在选项中。
+  - 注意：第一次执行会邮件发送所有评论（因为我并没有做特别检查）。
   - 不想带着python命令，可以，`chmod +x CommentReminder.py`赋予脚本执行权即可。
   - 想清除配置？可以，`rm -f /tmp/valine_leancloud_dat`，清除缓存文件即可。
 
