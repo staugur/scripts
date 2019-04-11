@@ -1,7 +1,7 @@
 CommentReminder
 -----------------------
 
-这是针对Valine评论系统（https://valine.js.org）的小功能，用以获取系统中的新增评论，并发送提醒给管理员。
+这是针对[Valine](ttps://valine.js.org "Valine")评论系统的小功能，用以获取系统中的新增评论，并发送提醒给管理员。
 
 运行逻辑：
 
