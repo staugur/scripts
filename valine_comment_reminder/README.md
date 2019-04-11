@@ -21,11 +21,14 @@ CommentReminder
 
   - python2.7 CommentReminder.py #-h查看帮助，需要设置的信息都在选项中。
   - 不想带着python命令，可以，`chmod +x CommentReminder.py`赋予脚本执行权即可。
+  - 想清除配置？可以，`rm -f /tmp/valine_leancloud_dat`，清除缓存文件即可。
 
 使用示例：
 
   - `python CommentReminder.py --app-id YourAPPID --app-key YourAPPKey -e xxxx@qq.com -p 授权码`
   - 建议加入到定时任务中，比如5分钟执行一次：`*/5 * * * * python CommentReminder.py`
+  - 新增评论时，发送邮件示例图：
+    ![](valine_comment_reminder.png)
 
 寻求帮助：
 
