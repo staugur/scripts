@@ -283,7 +283,7 @@ class ProcessChange(object):
                 if not resp["success"]:
                     return
                 else:
-                    print(u"发现新增评论，已发送邮件提醒。")
+                    print(resp)
         # 更新源数据
         self.storage.set("origin", json.dumps(origin))
 
