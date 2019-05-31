@@ -34,6 +34,6 @@ CommentReminder
 
 寻求帮助：
 
-  - email: staugur@email.com 
+  - email: staugur@saintic.com 
   - issue: https://github.com/saintic/satic.sdi/issues
 
