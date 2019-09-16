@@ -16,7 +16,8 @@ def migrate(src_url, dst_url):
     src = from_url(src_url)
     dst = from_url(dst_url)
     for key in src.keys():
-        dst.restore(key, src.ttl(key), src.dump(key))
+        ttl = src.ttl(key)
+        dst.restore(key, 0 if ttl <= 0 else ttl, src.dump(key))
 
 if __name__ == "__main__":
     # 源redis的url，格式：
