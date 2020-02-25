@@ -34,10 +34,10 @@ function install() {
     yum -y install pam-devel openssl-devel lzo-devel automake gcc gcc-c++ patch pkcs11-helper pkcs11-helper-devel
     [ "$?" != "0" ] && exit 1
 
-    tar zxf openvpn-2.1_rc19.tar.gz
+    tar zxf openvpn-2.1_rc21.tar.gz
     [ "$?" != "0" ] && exit 1
 
-    cd openvpn-2.1_rc19
+    cd openvpn-2.1_rc21
     [ "$?" != "0" ] && exit 1
 
     patch -p1 < ../openvpn-2.1_rc21_eurephia.patch
