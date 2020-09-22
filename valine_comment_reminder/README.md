@@ -27,7 +27,7 @@ CommentReminder
 
 使用示例：
 
-  - `python CommentReminder.py --app-id YourAPPID --app-key YourAPPKey -e xxxx@qq.com -p 授权码`
+  - `python CommentReminder.py --app-id Leancloud_app_id --app-key Leancloud_app_key -e xxxx@qq.com -p 授权码`
   - 建议加入到定时任务中，比如5分钟执行一次：`*/5 * * * * python CommentReminder.py`
   - 新增评论时，发送邮件示例图：
     ![](valine_comment_reminder.png)
