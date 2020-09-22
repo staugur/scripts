@@ -10,13 +10,16 @@
     依赖：pip install redis>=2.10.5
 """
 
-from redis import from_url
+from redis import from_url, RedisError
 
 def migrate(src_url, dst_url):
     src = from_url(src_url)
     dst = from_url(dst_url)
     for key in src.keys():
-        dst.restore(key, src.ttl(key), src.dump(key))
+        try:
+            dst.restore(key, src.ttl(key), src.dump(key))
+        except RedisError:
+            print('Migrate %s failed' % key)
 
 if __name__ == "__main__":
     # 源redis的url，格式：
