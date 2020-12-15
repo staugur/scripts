@@ -10,6 +10,7 @@
     依赖：pip install redis>=2.10.5
 """
 
+from sys import argv
 from redis import from_url, RedisError
 
 def migrate(src_url, dst_url):
@@ -17,17 +18,18 @@ def migrate(src_url, dst_url):
     dst = from_url(dst_url)
     for key in src.keys():
         try:
-            dst.restore(key, src.ttl(key), src.dump(key))
-        except RedisError:
+            dst.restore(key, src.ttl(key) or 0, src.dump(key))
+        except RedisError as e:
+            print(e)
             print('Migrate %s failed' % key)
 
 if __name__ == "__main__":
     # 源redis的url，格式：
     #redis://[:password]@host:port/db
     #host,port必填项,如有密码,记得密码前加冒号,比如redis://localhost:6379/0
-    src_url = "redis://@127.0.0.1:6379/0"
+    src_url = argv[1]
     # 迁移目标redis的url
-    dst_url = "redis://@127.0.0.1:16379/0"
+    dst_url = argv[2]
     # 执行
     if src_url and dst_url:
         migrate(src_url, dst_url)
