@@ -23,9 +23,13 @@ from subprocess import Popen, PIPE, STDOUT
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
-comma_pat = compile(r"\s*,\s*")
+# 认证的用户及密码
 FIU = getenv("FLUSH_IPTABLES_USERS")
-if not FIU or not ":" in FIU:
+# 刷新防火墙放行的端口
+PORT = int(getenv("FLUSH_IPTABLES_PORT") or 34567)
+
+comma_pat = compile(r"\s*,\s*")
+if not FIU or ":" not in FIU:
     raise ValueError('Invalid environment variable: FLUSH_IPTABLES_USERS')
 USERS = {
     i.split(":")[0]: generate_password_hash(i.split(':')[1])
@@ -67,7 +71,7 @@ def index():
         return jsonify(dict(code=0, msg="Already allowed access"))
     code, out, err = run_cmd(
         "sudo", "iptables", "-I", "INPUT",
-        "-p", "tcp", "--dport", "34567",
+        "-p", "tcp", "--dport", PORT,
         "-s", ip,
         "-j", "ACCEPT"
     )
@@ -86,4 +90,3 @@ def index():
 
 if __name__ == '__main__':
     app.run(port=13129, host='127.0.0.1')
-
