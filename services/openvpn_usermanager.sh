@@ -2,7 +2,7 @@
 #######################################################
 # $Name:         openvpn_usermanager.sh
 # $Version:      v1.0
-# $Author:       Taochengwei <taochengwei@starokay.com>
+# $Author:       staugur
 # $Create Date:  2018-10-17
 # $Modify Date:  2018-10-30
 # $Description:  OpenVPN用户添加(用户配置生成自动化)、吊销
@@ -15,9 +15,9 @@ EASYRSA_HOME="/usr/local/src/openvpn-2.1_rc21/easy-rsa/2.0"
 # OPENVPN配置目录
 OPENVPN_CONF="/etc/openvpn"
 # OPENVPN服务器IP
-OPENVPN_SERVER_IP="47.75.99.24"
+OPENVPN_SERVER_IP=""
 # OPENVPN服务器监听端口
-OPENVPN_SERVER_PORT=11194
+OPENVPN_SERVER_PORT=
 # 服务器CA证书链
 OPENVPN_SERVER_CRT="${OPENVPN_CONF}/ca.crt"
 # 吊销的用户证书链
